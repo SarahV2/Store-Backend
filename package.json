@@ -4,11 +4,14 @@
   "description": "",
   "main": "build/server.js",
   "scripts": {
+    "docker-start":"docker-compose up",
+    "db-init": "ENV=development && db-migrate --env development up",
     "build": "rm -rf build && npx tsc",
     "start": "nodemon src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "migrate": "db-migrate --env test up && db-migrate up",
-    "test": "jasmine",
+    "test": "ENV=test && db-migrate db:create my_store_test && db-migrate --env test up && jasmine && db-migrate db:drop test",
+
     "tsc": "tsc"
   },
   "author": "Udacity",
