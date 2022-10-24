@@ -20,6 +20,21 @@ export class ProductService {
     }
   }
 
+  async get(product_id: string): Promise<Product> {
+    try {
+      const connection = await Client?.connect();
+      const sqlQuery = "SELECT * FROM products where product_id=($1)";
+
+      const result = await connection.query(sqlQuery, [product_id]);
+
+      connection.release();
+
+      return result.rows[0]; // TODO: Limit the query to return the first/ only match instead
+    } catch (error) {
+      throw new Error(`Cannot get products ${error}`);
+    }
+  }
+
   async create(p: Product): Promise<Product> {
     try {
       const sqlQuery =
