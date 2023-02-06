@@ -1,23 +1,23 @@
 CREATE TABLE products (
-    productID SERIAL PRIMARY KEY,
+    product_id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     price FLOAT NOT NULL
 );
 
 
 CREATE TABLE users (
-    userID SERIAL PRIMARY KEY,
-    firstName VARCHAR(150) NOT NULL,
-    lastName VARCHAR(150) NOT NULL,
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(150) NOT NULL,
+    last_name VARCHAR(150) NOT NULL,
     password VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE orders (
     orderID SERIAL PRIMARY KEY,
-    userID int NOT NULL,
-    productID int NOT NULL,
-    FOREIGN KEY (productID) REFERENCES products(productID),
-    FOREIGN KEY (userID) REFERENCES users(userID),
-    productCount integer NOT NULL,
-    orderStatus VARCHAR(50) NOT NULL
+    user_id int NOT NULL,
+    product_id int NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    product_count integer NOT NULL,
+    order_status VARCHAR(50) NOT NULL
 );
