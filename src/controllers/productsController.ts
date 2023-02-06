@@ -21,7 +21,7 @@ export const show = async (req: Request, res: Response) => {
     }
     res.send(product);
   } catch (error) {
-    res.status(401).json(error);
+    return res.status(401).json(error);
   }
 };
 

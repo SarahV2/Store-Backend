@@ -36,7 +36,6 @@ export const authenticate = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    console.log("hellooo");
     return res.status(401).json("missing username/ password");
   }
 

@@ -65,8 +65,6 @@ export class UsersService {
 
     const result = await connection.query(sqlQuery, [username]);
 
-    console.log(password + pepper);
-
     if (result.rows.length) {
       const user = result.rows[0];
 

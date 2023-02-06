@@ -12,13 +12,3 @@ CREATE TABLE users (
     username VARCHAR(150) NOT NULL,
     password VARCHAR(150) NOT NULL
 );
-
-CREATE TABLE orders (
-    orderID SERIAL PRIMARY KEY,
-    user_id int NOT NULL,
-    product_id int NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products(product_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    product_count integer NOT NULL,
-    order_status VARCHAR(50) NOT NULL
-);
