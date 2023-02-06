@@ -1,7 +1,7 @@
 import Client from "../database";
 
 export type Product = {
-  productID?: Number;
+  product_id?: Number;
   name: string;
   price: Number;
 };
@@ -29,31 +29,31 @@ export class ProductService {
 
       connection.release();
 
-      return result.rows[0]; // TODO: Limit the query to return the first/ only match instead
+      return result.rows[0];
     } catch (error) {
       throw new Error(`Cannot get products ${error}`);
     }
   }
+
+  async create(p: Product): Promise<Product> {
+    try {
+      const sqlQuery =
+        "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
+
+      const connection = await Client.connect();
+
+      const result = await connection.query(sqlQuery, [p.name, p.price]);
+
+      const product = result.rows[0];
+
+      connection.release();
+
+      return product;
+    } catch (err) {
+      throw new Error(`Could not add new product ${p.name}. Error: ${err}`);
+    }
+  }
 }
-
-//   async create(p: Product): Promise<Product> {
-//     try {
-//       const sqlQuery =
-//         "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
-
-//       const connection = await Client.connect();
-
-//       const result = await connection.query(sqlQuery, [p.name, p.price]);
-
-//       const product = result.rows[0];
-
-//       connection.release();
-
-//       return product;
-//     } catch (err) {
-//       throw new Error(`Could not add new product ${p.name}. Error: ${err}`);
-//     }
-//   }
 
 //   async delete(productID: string): Promise<Product> {
 //     try {

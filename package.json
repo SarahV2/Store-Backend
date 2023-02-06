@@ -6,7 +6,7 @@
   "scripts": {
     "docker-start": "docker-compose up -d",
     "db:init": "ENV=dev && db-migrate --env dev up",
-    "db:start":"yarn docker-start && yarn db:init",
+    "db:start": "yarn docker-start && yarn db:init",
     "db:clean": "docker-compose down -v --remove-orphans",
     "build": "rm -rf build && npx tsc",
     "start": "nodemon src/server.ts",
@@ -16,24 +16,27 @@
     "tsc": "tsc",
     "migrate:up": "db-migrate up",
     "starto": "docker exec -it psql -U postgres -d my_store"
-
   },
   "author": "Udacity",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
+    "jsonwebtoken": "^9.0.0",
     "pg": "^8.5.1",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.9",
     "@types/jasmine": "^4.3.0",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/pg": "^7.14.7",
     "jasmine": "^4.4.0",
     "jasmine-spec-reporter": "^7.0.0",
