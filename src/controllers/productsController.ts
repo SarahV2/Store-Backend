@@ -38,7 +38,7 @@ export const create = async (req: Request, res: Response) => {
     }
 
     const newProduct = await Product.create(product);
-    res.json(newProduct);
+    res.status(201).json(newProduct);
   } catch (error) {
     res.status(401).json(error);
   }
