@@ -2,6 +2,8 @@
 
 ## Description
 
+## Requirements
+Ensure that you have [docker](https://www.docker.com/get-started/) & [docker-compose](https://docs.docker.com/compose/install) installed, as well as [db-migrate](https://db-migrate.readthedocs.io/en/latest/Getting%20Started/installation/) installed globally
 ## Technologies
 - Postgres 
 - Node/Express
@@ -14,20 +16,16 @@
 
 ## Getting Started
 
+1. First, install the dependencies
+``` yarn install ```
+2. With docker running on your machine, set up a postgres container and run the database migration files using the command ```yarn db:start```
 
-### Installation
-
-
-### Starting the Server
+3. Start up the server via ``` yarn watch ```
 
 
 ## Testing
+``` yarn test ```
+<br>
+This command creates the test database and executes jasmine command to run the tests
 
-
-
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
-
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
 
