@@ -1,3 +1,4 @@
+import { index } from "../controllers/productsController";
 import Client from "../database";
 
 export type orderProduct = {
@@ -59,6 +60,32 @@ export class OrdersService {
       return `Products have been successfully added to order ${orderID}}`;
     } catch (error) {
       throw new Error(`Could not add products to order wih ID ${orderID}`);
+    }
+  }
+
+  async index(
+    userID: string,
+    isOrderStatusComplete: boolean = false
+  ): Promise<Order[]> {
+    try {
+      const connection = await Client?.connect();
+
+      let sqlQuery =
+        "SELECT * FROM orders INNER JOIN order_products on orders.order_id = order_products.order_id AND orders.user_id=($1) AND orders.status!=($2)";
+
+      if (isOrderStatusComplete) {
+        sqlQuery =
+          "SELECT * FROM orders INNER JOIN order_products on orders.order_id = order_products.order_id AND orders.user_id=($1) AND orders.status=($2)";
+      }
+      const result = await connection.query(sqlQuery, [
+        userID,
+        orderStatus.COMPLETE,
+      ]);
+
+      connection.release();
+      return result.rows;
+    } catch (error) {
+      throw new Error(`Cannot get orders ${error}`);
     }
   }
 }
