@@ -5,20 +5,29 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (args: product category)
+
+| Route     | Description | Authentication Required?
+| ---      | ---       |  :---: 
+| **GET** /products| Index: Lists all products| No |
+| **GET** /products/:product_id | Show: Retrieves information of a single product by ID| No |
+| **POST** /products | Create: Creates a new product| Yes |
 
 #### Users
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+
+| Route     | Description | Authentication Required?
+| ---      | ---       |  :---: 
+| **GET** /users| Index: Lists all users| Yes |
+| **GET** /users/:user_id | Show: Retrieves information of a single user by ID| Yes |
+| **POST** /users | Create: Creates a new user| Yes |
+| **POST** /users/login | Authenticate: Enable an existing user login| Yes |
 
 #### Orders
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+
+| Route     | Description | Authentication Required?
+| ---      | ---       |  :---: 
+| **POST** /orders| Create: Creates a new order| Yes |
+| **POST** /orders/:order_id | Adds products to an existing order| Yes |
+| **GET** /orders | Get current user's orders (can be filtered by order status)| Yes |
 
 ## Data Shapes
 #### Product
