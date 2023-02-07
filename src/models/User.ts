@@ -36,8 +36,8 @@ export class UsersService {
         "INSERT INTO users (first_name, last_name, username, password) VALUES($1, $2, $3, $4) RETURNING *";
 
       const hashedPassword = bcrypt.hashSync(
-        u.password + pepper,
-        parseInt(saltRounds)
+        u.password + (pepper as string),
+        parseInt(saltRounds as string)
       );
 
       const connection = await Client.connect();

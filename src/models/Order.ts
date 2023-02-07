@@ -1,4 +1,3 @@
-import { index } from "../controllers/productsController";
 import Client from "../database";
 
 export type orderProduct = {

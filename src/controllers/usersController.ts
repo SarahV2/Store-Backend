@@ -25,7 +25,7 @@ export const create = async (req: Request, res: Response) => {
 
   try {
     const newUser = await UserService.create(user);
-    let token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET);
+    let token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET as string);
     return res.json({ token });
   } catch (error) {
     return res.status(400).json("Error" + error);
@@ -42,7 +42,10 @@ export const authenticate = async (req: Request, res: Response) => {
   try {
     const currentUser = await UserService.authenticate(username, password);
     if (currentUser) {
-      let token = jwt.sign({ user: currentUser }, process.env.TOKEN_SECRET);
+      let token = jwt.sign(
+        { user: currentUser },
+        process.env.TOKEN_SECRET as string
+      );
       return res.json({ token });
     } else {
       res.status(401).json("Invalid username/password");

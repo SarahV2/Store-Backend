@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { OrdersService, Order, orderProduct } from "../models/order";
+import { OrdersService, orderProduct } from "../models/order";
 import { extractUserID } from "../utils/middleware";
 
 const orderService = new OrdersService();
@@ -10,7 +10,7 @@ export const createOrder = async (_req: Request, res: Response) => {
   try {
     if (userID) {
       const newOrder = await orderService.createOrder(userID);
-      return res.json(newOrder);
+      return res.status(201).json(newOrder);
     }
   } catch (err) {
     return res.status(400).json(err);
@@ -31,7 +31,7 @@ export const addProductsToOrder = async (_req: Request, res: Response) => {
     const addedProduct = await orderService.addProduct(orderID, productsList);
     return res.send(addedProduct);
   } catch (error: any) {
-    return res.status(503).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 
@@ -50,7 +50,7 @@ export const index = async (_req: Request, res: Response) => {
       );
       return res.send(results);
     } catch (error: any) {
-      return res.status(503).json({ error: error.message });
+      return res.status(400).json({ error: error.message });
     }
   }
   return res.status(400).json({ error: "invalid user_id" });
@@ -71,7 +71,7 @@ export const getOrdersByUserID = async (_req: Request, res: Response) => {
       );
       return res.send(results);
     } catch (error: any) {
-      return res.status(503).json({ error: error.message });
+      return res.status(400).json({ error: error.message });
     }
   }
   return res.status(400).json({ error: "invalid user_id" });
