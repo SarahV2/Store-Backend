@@ -31,21 +31,34 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- [OPTIONAL] category
+| **Property**     | **Type** |
+| :---:       | :---: | 
+|product_id| number|
+| name | VARCHAR |
+| price|VARCHAR| 
+
 
 #### User
-- id
-- firstName
-- lastName
-- password
+| **Property**     | **Type** |
+| :---:       | :---: | 
+|user_id| number|
+| username | VARCHAR |
+| password|VARCHAR| 
+| first_name|VARCHAR| 
+| last_name|VARCHAR| 
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+| **Property**     | **Type** |
+| :---:       | :---: | 
+|order_id| number|
+| user_id | number [foreign key to the users table]|
+| status|VARCHAR| 
+
+#### Order Products
+| **Property**     | **Type** |
+| :---:       | :---: | 
+|order_product_id| number|
+| order_id | number (foreign key to the orders table)|
+| prooduct_id|number (foreign key to the products table)|
+|quantity| number|
 
