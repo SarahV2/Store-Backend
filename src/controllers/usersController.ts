@@ -26,7 +26,7 @@ export const create = async (req: Request, res: Response) => {
   try {
     const newUser = await UserService.create(user);
     let token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET as string);
-    return res.json({ token });
+    return res.status(201).json({ token });
   } catch (error) {
     return res.status(400).json("Error" + error);
   }
