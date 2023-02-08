@@ -23,11 +23,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 
-| Route     | Description | Authentication Required?
-| ---      | ---       |  :---: 
+| Route     | Description | Authentication Required? | Optional |
+| ---      | ---       |  :---: | :---: |
 | **POST** /orders| Create: Creates a new order| Yes |
 | **POST** /orders/:order_id | Adds products to an existing order| Yes |
-| **GET** /orders | Get current user's orders (can be filtered by order status)| Yes |
+| **GET** /orders | Get current user's orders (can be filtered by order status)| Yes | status (default is open)|
+| **GET** /orders/users/:user_id | Get a user orders using the user_id (can be filtered by order status)| Yes | status (default is open) |
 
 ## Data Shapes
 #### Product
