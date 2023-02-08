@@ -5,8 +5,12 @@ import jwt from "jsonwebtoken";
 const UserService = new UsersService();
 
 export const index = async (req: Request, res: Response) => {
-  const results = await UserService.index();
-  res.send(results);
+  try {
+    const results = await UserService.index();
+    res.send(results);
+  } catch (error) {
+    return res.status(400).json("Error" + error);
+  }
 };
 
 export const create = async (req: Request, res: Response) => {

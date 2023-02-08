@@ -4,8 +4,12 @@ import { Product, ProductService } from "../models/product";
 const Product = new ProductService();
 
 export const index = async (req: Request, res: Response) => {
-  const results = await Product.index();
-  res.send(results);
+  try {
+    const results = await Product.index();
+    res.send(results);
+  } catch (error) {
+    return res.status(400).json("Error" + error);
+  }
 };
 
 export const show = async (req: Request, res: Response) => {
