@@ -14,7 +14,8 @@ Ensure that you have [docker](https://www.docker.com/get-started/) & [docker-com
 - jsonwebtoken
 - jasmine
 
-
+## DB/ API Requirements
+Database models and info on the avaliable API endpoints can be found in the [Requirements document](https://github.com/SarahV2/Store-Backend/blob/main/REQUIREMENTS.md)
 ## Getting Started
 a sample file is provided for environment variables, rename ```example.env``` to ```.env```
 1. First, install the dependencies
