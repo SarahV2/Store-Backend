@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "8cf5419a-28c9-47ff-b767-17f7d4ac8dcd",
+		"name": "My Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products/:product_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Journal\",\n    \"price\":\"20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/:user_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register / Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody)",
+									"pm.collectionVariables.set('token',jsonData[\"token\"])",
+									"console.log(jsonData[\"token\"])"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"potato\",\n    \"password\":\"password1234\",\n    \"first_name\":\"Potato\",\n    \"last_name\":\"Chip\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login/Authenticate User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody)",
+									"pm.collectionVariables.set('token',jsonData.token)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"potato\",\n    \"password\":\"password1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders?status=open",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "open"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders by User ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/users/:user_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"users",
+								":user_id"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "open",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add products to order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"products\":[\n        {\"product_id\":1,\n        \"quantity\":2}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/orders/:order_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								":order_id"
+							],
+							"variable": [
+								{
+									"key": "order_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api",
+			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

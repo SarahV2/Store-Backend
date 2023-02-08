@@ -36,7 +36,7 @@ describe("Product Model Tests", () => {
       orderProduct,
     ]);
     expect(result).toBe(
-      `Products have been successfully added to order ${orderID}}`
+      `Products have been successfully added to order ${orderID}`
     );
   });
 });

@@ -19,6 +19,13 @@ describe("Product Model Tests", () => {
   });
 
   it("return a product given its ID", async () => {
+    const otherTestProduct: Product = {
+      name: "Lights",
+      price: 12,
+    };
+
+    await productService.create(otherTestProduct);
+
     const existingProduct = await productService.show(1);
     expect(existingProduct.name).toBeDefined();
     expect(existingProduct.product_id).toBeDefined();
