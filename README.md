@@ -31,7 +31,8 @@ What this script will do behind the scenes:
 
 - Run the DB migration files using **db-migrate**: ```db-migrate --env dev up```
 
-3. Start up the server via ``` yarn watch ```. The server will start listening on port ```3000```
+### Starting up the server
+Start up the server via ``` yarn watch ```. The server will start listening on port ```3000```
 
 **Note:** a [postman collection](https://github.com/SarahV2/Store-Backend/blob/main/My%20Store.postman_collection.json) is provided if you wish to try out the endpoints in development
 
