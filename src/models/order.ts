@@ -56,7 +56,7 @@ export class OrdersService {
       }
       conn.release();
 
-      return `Products have been successfully added to order ${orderID}}`;
+      return `Products have been successfully added to order ${orderID}`;
     } catch (error) {
       throw new Error(`Could not add products to order wih ID ${orderID}`);
     }
