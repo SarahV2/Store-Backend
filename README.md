@@ -18,12 +18,12 @@ Ensure that you have [docker](https://www.docker.com/get-started/) & [docker-com
 Database models and info on the avaliable API endpoints can be found in the [Requirements document](https://github.com/SarahV2/Store-Backend/blob/main/REQUIREMENTS.md)
 ## Getting Started
 
-### Preparing .env File and Installing the Dependencies
+### 1. Preparing .env File and Installing the Dependencies
 * a sample file is provided for environment variables, rename ```example.env``` to ```.env```
 
 * then, install the dependencies by running ``` yarn install ```
 
-### Setting up the Database
+### 2. Setting up the Database
 With docker running on your machine, set up a postgres container and run the database migration files using the command ```yarn db:start``` this will start the development database on port ```5432```
 
 What this script will do behind the scenes:
@@ -31,7 +31,7 @@ What this script will do behind the scenes:
 
 - Run the DB migration files using **db-migrate**: ```db-migrate --env dev up```
 
-### Starting up the server
+### 3. Starting up the server
 Start up the server via ``` yarn watch ```. The server will start listening on port ```3000```
 
 **Note:** a [postman collection](https://github.com/SarahV2/Store-Backend/blob/main/My%20Store.postman_collection.json) is provided if you wish to try out the endpoints in development
